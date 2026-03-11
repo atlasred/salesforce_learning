@@ -29,32 +29,32 @@
     <section>
       <h2>Main Categories</h2>
       <ul>
-        <li>Grocery</li>
-        <li>Electronics</li>
-        <li>Fashion</li>
-        <li>Home</li>
-        <li>Pharmacy</li>
+        <li>{{categories[0]}}</li>
+        <li>{{categories[1]}}</li>
+        <li>{{categories[2]}}</li>
+        <li>{{categories[3]}}</li>
+        <li>{{categories[4]}}</li>
       </ul>
     </section>
 
     <section>
       <h2>Featured Products</h2>
       <article>
-        <div>Image Placeholder</div>
-        <h3>Fresh Apples</h3>
-        <p>$4.99</p>
+        <img src="../../../client/default/images/products/fresh-apples.svg" alt="Fresh Apples" width="220" height="146" />
+        <h3>{{featuredProducts[0].title}}</h3>
+        <p>{{featuredProducts[0].price}}</p>
         <button type="button">Add to Cart</button>
       </article>
       <article>
-        <div>Image Placeholder</div>
-        <h3>Wireless Earbuds</h3>
-        <p>$29.99</p>
+        <img src="../../../client/default/images/products/wireless-earbuds.svg" alt="Wireless Earbuds" width="220" height="146" />
+        <h3>{{featuredProducts[1].title}}</h3>
+        <p>{{featuredProducts[1].price}}</p>
         <button type="button">Add to Cart</button>
       </article>
       <article>
-        <div>Image Placeholder</div>
-        <h3>Cotton T-Shirt</h3>
-        <p>$12.99</p>
+        <img src="../../../client/default/images/products/cotton-tshirt.svg" alt="Cotton T-Shirt" width="220" height="146" />
+        <h3>{{featuredProducts[2].title}}</h3>
+        <p>{{featuredProducts[2].price}}</p>
         <button type="button">Add to Cart</button>
       </article>
     </section>
