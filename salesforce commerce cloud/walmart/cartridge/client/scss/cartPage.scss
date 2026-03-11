@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+.cart-page {
+  background: $wm-bg;
+}
+
+.cart-page .wm-checkout {
+  background: $wm-blue;
+  color: #fff;
+}

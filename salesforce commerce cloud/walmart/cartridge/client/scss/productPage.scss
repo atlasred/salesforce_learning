@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+.product-page {
+  background: $wm-bg;
+}
+
+.product-page .wm-buy {
+  background: $wm-yellow;
+  color: #142433;
+}
