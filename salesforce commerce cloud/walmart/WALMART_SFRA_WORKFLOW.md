@@ -469,3 +469,139 @@ Build **flow by flow**, not **folder by folder**.
 
 ### Core architecture:
 **controller → model → helper/scripts → template → client JS/CSS**
+
+---
+
+## Networking Workflow (Later Phase)
+
+### Goal
+
+Simulate a local SFCC Business Manager networking model so admin, storefront, and support tools share one commerce data source.
+
+Core path:
+
+**Merchant/Admin → Admin Server → Shared Commerce Data → Storefront Server / Support Ops → Templates/UI → Shopper**
+
+---
+
+## Networking Components
+
+### 1. Merchant / Admin Console
+A local admin UI used by business users.
+
+Main use:
+- manage products
+- manage categories
+- manage inventory
+- manage promotions
+- manage orders and customers
+
+---
+
+### 2. Admin Server
+Server-side module layer for business operations.
+
+Main modules:
+- Products Module
+- Categories Module
+- Inventory Module
+- Promotions Module
+- Orders Module
+- Customers Module
+- Content / Pages Module
+- Settings Module
+
+Role:
+- receives admin actions
+- validates requests
+- reads/writes shared commerce data
+
+---
+
+### 3. Shared Commerce Data
+Central commerce storage used by all systems.
+
+Main data domains:
+- products
+- categories
+- inventory
+- price_books
+- promotions
+- customers
+- carts
+- orders
+- content_blocks
+- pages
+- settings
+
+Role:
+- single source of truth for admin and storefront flows
+
+---
+
+### 4. Storefront Server (SFRA-like)
+Customer-facing backend that reads shared commerce data.
+
+Typical controllers:
+- Home Controller
+- Product Controller
+- Cart Controller
+- Checkout Controller
+- Order Controller
+
+Role:
+- build storefront page responses
+- pass data to templates
+
+---
+
+### 5. Support / Ops Panel
+Optional internal tool UI.
+
+Common actions:
+- order lookup
+- customer lookup
+- refund / return tools
+- inventory checks
+- manual adjustments
+
+Role:
+- read operations data
+- assist customer support teams
+
+---
+
+### 6. Templates / Frontend UI
+Render layer shown to shoppers.
+
+Main pages:
+- Home Page
+- Product Page
+- Cart Page
+- Checkout Page
+- Order Confirmation
+- Account Page
+
+Role:
+- render server data into shopper-facing pages
+
+---
+
+## Networking Request Flow
+
+1. Admin user updates commerce data in local business console.
+2. Admin server validates and writes updates to shared commerce data.
+3. Storefront server reads latest data during shopper requests.
+4. Templates render updated content for browser output.
+5. Support/Ops panel can read the same source for service operations.
+
+---
+
+## Local Simulation Rule
+
+When implementing this later:
+- keep **admin routes** separate from storefront routes
+- keep one shared data contract for both admin and storefront
+- keep support tools read-focused by default
+- keep storefront flow unchanged: **controller → model → helper/scripts → template → client JS/CSS**
+
