@@ -139,6 +139,16 @@ body {
 
 /* Content */
 .content { padding: var(--space-5); }
+.app-section { display: none; }
+.app-section.is-visible { display: block; }
+.section-note { color: var(--muted); margin-top: 0.35rem; }
+#section-dashboard,
+#section-categories,
+#section-inventory,
+#section-orders,
+#section-customers,
+#section-content,
+#section-settings { padding: var(--space-5); }
 .breadcrumbs {
   display: flex;
   gap: var(--space-2);
