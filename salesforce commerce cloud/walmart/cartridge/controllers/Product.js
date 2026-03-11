@@ -1,14 +1,11 @@
 'use strict';
 
 var server = require('server');
+var productPageModel = require('*/cartridge/models/productPage');
 
 server.get('Show', function (req, res, next) {
-    var productData = {
-        title: 'Sample Product',
-        price: '$19.99',
-        stock: 'In stock',
-        description: 'Simple product page placeholder for step-by-step workflow.'
-    };
+    var productId = req.querystring.pid;
+    var productData = productPageModel.buildProductPageModel(productId);
 
     res.render('product/productPage', productData);
     return next();

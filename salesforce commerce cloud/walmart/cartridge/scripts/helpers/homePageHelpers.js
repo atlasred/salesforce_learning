@@ -1,30 +1,19 @@
 'use strict';
 
+var catalogHelpers = require('*/cartridge/scripts/helpers/catalogHelpers');
+
 function getHomeCategories() {
-    return ['Grocery', 'Electronics', 'Fashion', 'Home', 'Pharmacy'];
+    return [
+        { id: 'cat-grocery', name: 'Grocery', url: '/category/grocery' },
+        { id: 'cat-electronics', name: 'Electronics', url: '/category/electronics' },
+        { id: 'cat-fashion', name: 'Fashion', url: '/category/fashion' },
+        { id: 'cat-home', name: 'Home', url: '/category/home' },
+        { id: 'cat-pharmacy', name: 'Pharmacy', url: '/category/pharmacy' }
+    ];
 }
 
 function getFeaturedProducts() {
-    return [
-        {
-            id: 'sku-1001',
-            title: 'Fresh Apples',
-            price: '$4.99',
-            image: '../../../client/default/images/products/fresh-apples.svg'
-        },
-        {
-            id: 'sku-1002',
-            title: 'Wireless Earbuds',
-            price: '$29.99',
-            image: '../../../client/default/images/products/wireless-earbuds.svg'
-        },
-        {
-            id: 'sku-1003',
-            title: 'Cotton T-Shirt',
-            price: '$12.99',
-            image: '../../../client/default/images/products/cotton-tshirt.svg'
-        }
-    ];
+    return catalogHelpers.getFormattedProducts();
 }
 
 module.exports = {
