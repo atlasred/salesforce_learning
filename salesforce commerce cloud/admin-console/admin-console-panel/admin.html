@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walmart Commerce Admin</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- Global top utility bar -->
+  <header class="topbar" role="banner">
+    <div class="topbar__brand">
+      <span class="cloud-logo" aria-hidden="true">☁</span>
+      <span>sandbox - Div</span>
+    </div>
+    <div class="topbar__center-title" aria-label="Current module">Business Manager</div>
+    <div class="topbar__actions">
+      <button class="icon-btn" type="button" aria-label="View notifications">🔔</button>
+      <button class="quick-btn" type="button">Quick Action</button>
+      <button class="avatar-btn" type="button" aria-label="Open user menu">JD</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Left sidebar navigation -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <nav>
+        <h2 class="sidebar-title">Merchant Tools</h2>
+        <ul class="nav-list" id="sidebarNav">
+          <li><button class="nav-item" type="button" data-section="dashboard"><span>◻</span>Dashboard</button></li>
+          <li><button class="nav-item active" type="button" data-section="products"><span>◼</span>Storefront</button></li>
+          <li><button class="nav-item" type="button" data-section="categories"><span>●</span>Categories</button></li>
+          <li><button class="nav-item" type="button" data-section="inventory"><span>◆</span>Inventory</button></li>
+          <li><button class="nav-item" type="button" data-section="orders"><span>▦</span>Orders</button></li>
+          <li><button class="nav-item" type="button" data-section="customers"><span>◉</span>Customers</button></li>
+          <li><button class="nav-item" type="button" data-section="content"><span>▤</span>Content</button></li>
+          <li><button class="nav-item" type="button" data-section="settings"><span>⚙</span>Settings</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main page content -->
+    <main class="content" role="main">
+      <!-- Products section -->
+      <section id="section-products" class="app-section is-visible">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#">Home</a><span>/</span><a href="#">Commerce</a><span>/</span><span aria-current="page">Storefront</span>
+        </nav>
+
+        <section class="page-header">
+          <div>
+            <h1><span class="section-eye" aria-hidden="true">👁</span> Storefront</h1>
+            <p>Manage catalog items for the storefront</p>
+          </div>
+          <div class="page-header__actions">
+            <button class="btn" type="button">Import CSV</button>
+            <button class="btn" type="button">Export</button>
+          </div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Product summary metrics">
+          <article class="metric-card"><p>Total Products</p><h2 id="total-products">0</h2></article>
+          <article class="metric-card"><p>Active Products</p><h2 id="active-products">0</h2></article>
+          <article class="metric-card"><p>Low Stock</p><h2 id="low-stock-products">0</h2></article>
+          <article class="metric-card"><p>Draft Items</p><h2 id="draft-products">0</h2></article>
+        </section>
+
+        <section class="card filters" aria-label="Filter products">
+          <label>Search<input type="search" placeholder="Find by product name or SKU" /></label>
+          <label>Category
+            <select><option>All Categories</option><option>Electronics</option><option>Groceries</option><option>Home</option><option>Apparel</option></select>
+          </label>
+          <label>Status
+            <select><option>All Statuses</option><option>Active</option><option>Draft</option><option>Low Stock</option></select>
+          </label>
+          <label>Stock Status
+            <select><option>All</option><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option></select>
+          </label>
+          <button class="btn" type="button">Reset Filters</button>
+        </section>
+
+        <section class="card table-card" aria-label="Products table">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th><th>SKU</th><th>Category</th><th>Price</th>
+                <th>Stock</th><th>Status</th><th>Updated</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body"></tbody>
+          </table>
+        </section>
+      </section>
+
+      <!-- Other sidebar sections -->
+      <section id="section-dashboard" class="app-section card">
+        <h2>Dashboard</h2>
+        <p class="section-note">Dashboard widgets will appear here.</p>
+      </section>
+
+      <section id="section-categories" class="app-section card">
+        <h2>Categories</h2>
+        <p class="section-note">Category management tools will appear here.</p>
+      </section>
+
+      <section id="section-inventory" class="app-section card">
+        <h2>Inventory</h2>
+        <p class="section-note">Inventory controls will appear here.</p>
+      </section>
+
+      <section id="section-orders" class="app-section card">
+        <h2>Orders</h2>
+        <p class="section-note">Order operations will appear here.</p>
+      </section>
+
+      <section id="section-customers" class="app-section card">
+        <h2>Customers</h2>
+        <p class="section-note">Customer data tools will appear here.</p>
+      </section>
+
+      <section id="section-content" class="app-section card">
+        <h2>Content</h2>
+        <p class="section-note">Content controls will appear here.</p>
+      </section>
+
+      <section id="section-settings" class="app-section card">
+        <h2>Settings</h2>
+        <p class="section-note">System settings will appear here.</p>
+      </section>
+
+      <section id="section-products-previews" class="preview-grid app-section is-visible" aria-label="Additional admin previews">
+        <article class="card preview-card"><h3>Recent Orders</h3><p>Operational preview area.</p></article>
+        <article class="card preview-card"><h3>Inventory Alerts</h3><p>Operational preview area.</p></article>
+        <article class="card preview-card"><h3>Featured Homepage Products</h3><p>Operational preview area.</p></article>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
