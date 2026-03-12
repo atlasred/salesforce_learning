@@ -62,14 +62,31 @@ body {
   background: #fdfefe;
   border-bottom: 1px solid var(--border);
 }
-.topbar__brand { font-weight: 700; font-size: 0.98rem; }
-.topbar__search input {
-  width: 100%;
-  max-width: 520px;
-  padding: 0.55rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: #fff;
+.topbar__brand {
+  font-weight: 700;
+  font-size: 0.98rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.cloud-logo {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.4rem;
+  background: #e5e7eb;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+.topbar__center-title {
+  justify-self: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 .topbar__actions { display: flex; gap: var(--space-2); align-items: center; }
 
@@ -114,6 +131,15 @@ body {
   border-right: 1px solid var(--border);
   background: #f8fafc;
 }
+.sidebar-title {
+  margin: 0 0 var(--space-3);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .nav-list {
   list-style: none;
   padding: 0;
@@ -165,7 +191,8 @@ body {
   gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
-.page-header h1 { margin: 0 0 0.2rem; font-size: 1.6rem; }
+.page-header h1 { margin: 0 0 0.2rem; font-size: 1.6rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+.section-eye { font-size: 1.1rem; }
 .page-header p { margin: 0; color: var(--muted); }
 .page-header__actions { display: flex; gap: var(--space-2); }
 
