@@ -11,6 +11,8 @@ router.get('/', HomeController.showHome);
 router.get('/walmart', HomeController.showHome);
 router.get('/product/:id', ProductController.showProduct);
 router.get('/cart', CartController.showCart);
-router.get('/account', AccountController.showAccount);
+
+// Keep the account page reachable from both the canonical route and older direct-template/SFRA-style URLs.
+router.get(['/account', '/account/accountPage.html', '/Account-Show'], AccountController.showAccount);
 
 module.exports = router;
