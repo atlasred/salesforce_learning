@@ -1,5 +1,25 @@
 (function () {
+    function getServerBootId() {
+        return document.body ? document.body.dataset.serverBootId || '' : '';
+    }
+
+    function syncCartStorageWithServerBoot() {
+        var serverBootId = getServerBootId();
+
+        if (!serverBootId) {
+            return;
+        }
+
+        if (window.localStorage.getItem('wmCartServerBoot') !== serverBootId) {
+            window.localStorage.removeItem('wmCartItems');
+            window.localStorage.removeItem('wmCartCount');
+            window.localStorage.setItem('wmCartServerBoot', serverBootId);
+        }
+    }
+
     function parseCartItems() {
+        syncCartStorageWithServerBoot();
+
         try {
             return JSON.parse(window.localStorage.getItem('wmCartItems') || '[]');
         } catch (error) {
@@ -8,6 +28,7 @@
     }
 
     function saveCartItems(items) {
+        syncCartStorageWithServerBoot();
         window.localStorage.setItem('wmCartItems', JSON.stringify(items));
         window.localStorage.setItem('wmCartCount', String(items.reduce(function (total, item) {
             return total + Number(item.quantity || 0);
@@ -29,7 +50,7 @@
             displayPrice: button.dataset.productDisplayPrice,
             quantity: 1,
             variant: variant,
-            variantLabel: variantLabel,
+            variantLabel: variantLabel
         };
     }
 
@@ -60,5 +81,8 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', bindAddToCart);
+    document.addEventListener('DOMContentLoaded', function () {
+        syncCartStorageWithServerBoot();
+        bindAddToCart();
+    });
 }());

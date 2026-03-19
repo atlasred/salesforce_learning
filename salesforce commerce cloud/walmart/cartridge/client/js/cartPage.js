@@ -1,5 +1,25 @@
 (function () {
+    function getServerBootId() {
+        return document.body ? document.body.dataset.serverBootId || '' : '';
+    }
+
+    function syncCartStorageWithServerBoot() {
+        var serverBootId = getServerBootId();
+
+        if (!serverBootId) {
+            return;
+        }
+
+        if (window.localStorage.getItem('wmCartServerBoot') !== serverBootId) {
+            window.localStorage.removeItem('wmCartItems');
+            window.localStorage.removeItem('wmCartCount');
+            window.localStorage.setItem('wmCartServerBoot', serverBootId);
+        }
+    }
+
     function parseCartItems() {
+        syncCartStorageWithServerBoot();
+
         try {
             return JSON.parse(window.localStorage.getItem('wmCartItems') || '[]');
         } catch (error) {
@@ -8,6 +28,7 @@
     }
 
     function saveCartItems(items) {
+        syncCartStorageWithServerBoot();
         window.localStorage.setItem('wmCartItems', JSON.stringify(items));
         window.localStorage.setItem('wmCartCount', String(items.reduce(function (total, item) {
             return total + Number(item.quantity || 0);
@@ -18,13 +39,22 @@
         return '$' + Number(value || 0).toFixed(2);
     }
 
+    function escapeHtml(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     function createCartItemMarkup(item, index) {
         return [
             '<article class="item" data-cart-item data-cart-index="' + index + '">',
-            '  <img src="' + item.image + '" alt="' + item.title + '" width="160" height="106" />',
+            '  <img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" width="160" height="106" />',
             '  <div>',
-            '    <h3>' + item.title + '</h3>',
-            '    <p class="variant">Variant: ' + item.variantLabel + '</p>',
+            '    <h3>' + escapeHtml(item.title) + '</h3>',
+            '    <p class="variant">Variant: ' + escapeHtml(item.variantLabel || 'Standard') + '</p>',
             '    <p class="qty">Quantity: ' + Number(item.quantity || 0) + '</p>',
             '    <p class="price">' + formatPrice(item.price) + '</p>',
             '  </div>',
@@ -88,6 +118,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        syncCartStorageWithServerBoot();
         renderCart();
         bindRemove();
     });
