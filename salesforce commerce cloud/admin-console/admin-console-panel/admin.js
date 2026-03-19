@@ -244,6 +244,34 @@ function renderCustomersSection() {
   `).join('');
 }
 
+function renderCategoryOptions() {
+  const optionsMarkup = categories
+    .map((category) => `<option value="${escapeHtml(category.name)}">${escapeHtml(category.name)}</option>`)
+    .join('');
+
+  productCategorySelect.innerHTML = optionsMarkup;
+  filterCategory.innerHTML = '<option value="all">All Categories</option>' + optionsMarkup;
+}
+
+function renderCategoriesSection() {
+  if (!categories.length) {
+    categoriesList.innerHTML = '<p class="section-note">No categories available.</p>';
+    return;
+  }
+
+  categoriesList.innerHTML = categories
+    .map((category) => {
+      const count = products.filter((product) => product.category === category.name).length;
+      return `
+        <article class="category-admin-card">
+          <h3>${escapeHtml(category.name)}</h3>
+          <p>${count} product(s) currently assigned.</p>
+        </article>
+      `;
+    })
+    .join('');
+}
+
 function showSection(sectionName) {
   appSections.forEach((section) => section.classList.remove('is-visible'));
 
