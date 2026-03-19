@@ -1,0 +1,99 @@
+<svg width="1400" height="860" viewBox="0 0 1400 860" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Admin Console Architecture</title>
+  <desc id="desc">Colored rectangle diagram of the admin console UI, admin backend, and file database with arrows and double arrows.</desc>
+  <defs>
+    <style>
+      .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 18px Arial, sans-serif; fill: #334155; }
+      .section { font: 700 22px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .body { font: 500 15px Arial, sans-serif; fill: #1e293b; }
+      .small { font: 500 14px Arial, sans-serif; fill: #475569; }
+      .legend { font: 600 14px Arial, sans-serif; fill: #0f172a; }
+      .arrow { stroke: #0f172a; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .double { stroke: #7c3aed; stroke-width: 4; fill: none; marker-start: url(#arrowPurple); marker-end: url(#arrowPurple); }
+      .dashed { stroke-dasharray: 12 10; }
+    </style>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0 0L14 7L0 14V0Z" fill="#0f172a"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0 0L14 7L0 14V0Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="860" rx="28" fill="#f8fafc"/>
+  <text x="42" y="60" class="title">Admin Console Architecture</text>
+  <text x="42" y="92" class="subtitle">Business user actions flow from the admin panel to the Express backend and into shared JSON persistence.</text>
+
+  <rect x="42" y="118" width="1316" height="78" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="64" y="140" width="24" height="24" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="100" y="158" class="legend">UI scope</text>
+  <rect x="250" y="140" width="24" height="24" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="286" y="158" class="legend">Service / API scope</text>
+  <rect x="520" y="140" width="24" height="24" rx="6" fill="#fef3c7" stroke="#d97706"/>
+  <text x="556" y="158" class="legend">Data scope</text>
+  <rect x="760" y="140" width="24" height="24" rx="6" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="796" y="158" class="legend">Two-way sync / HTTP exchange</text>
+  <rect x="1090" y="140" width="24" height="24" rx="6" fill="#fee2e2" stroke="#dc2626"/>
+  <text x="1126" y="158" class="legend">Validation / write boundary</text>
+
+  <rect x="70" y="250" width="330" height="450" rx="28" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+  <text x="100" y="294" class="section">1. Admin UI</text>
+  <rect x="102" y="324" width="266" height="88" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="126" y="358" class="label">admin-console/admin-console-panel/</text>
+  <text x="126" y="386" class="body">admin.html • admin.js • admin.css</text>
+
+  <rect x="102" y="436" width="266" height="108" rx="16" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="126" y="468" class="label">Business capabilities</text>
+  <text x="126" y="496" class="body">Products • Categories • Orders</text>
+  <text x="126" y="522" class="small">Future-friendly: inventory, promotions, settings</text>
+
+  <rect x="102" y="568" width="266" height="100" rx="16" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="126" y="600" class="label">Browser actions</text>
+  <text x="126" y="628" class="body">Load /admin</text>
+  <text x="126" y="652" class="body">Submit CRUD forms</text>
+
+  <rect x="500" y="232" width="390" height="488" rx="28" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+  <text x="530" y="276" class="section">2. Admin backend</text>
+  <rect x="532" y="306" width="326" height="92" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="556" y="340" class="label">node-express-backend/src/server.js</text>
+  <text x="556" y="368" class="body">Boots standalone admin server on port 4000</text>
+
+  <rect x="532" y="420" width="326" height="114" rx="16" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <text x="556" y="454" class="label">app.js + routes/adminApiRoutes.js</text>
+  <text x="556" y="482" class="body">/admin UI route</text>
+  <text x="556" y="508" class="body">/api/admin/products • categories • orders</text>
+
+  <rect x="532" y="556" width="326" height="132" rx="16" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+  <text x="556" y="590" class="label">services/adminDataService.js</text>
+  <text x="556" y="618" class="body">Validates payloads</text>
+  <text x="556" y="644" class="body">Reads + writes commerce records</text>
+  <text x="556" y="670" class="body">Shapes admin API responses</text>
+
+  <rect x="990" y="270" width="320" height="410" rx="28" fill="#fffbeb" stroke="#d97706" stroke-width="3"/>
+  <text x="1020" y="314" class="section">3. Shared persistence</text>
+  <rect x="1022" y="344" width="256" height="88" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="1046" y="378" class="label">database/fileDatabase.js</text>
+  <text x="1046" y="406" class="body">File abstraction layer</text>
+
+  <rect x="1022" y="456" width="256" height="168" rx="16" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+  <text x="1046" y="490" class="label">database/data/*.json</text>
+  <text x="1046" y="520" class="body">products.json</text>
+  <text x="1046" y="548" class="body">categories.json</text>
+  <text x="1046" y="576" class="body">orders.json</text>
+  <text x="1046" y="606" class="small">Single local source used by admin + server</text>
+
+  <path class="double" d="M400 474H500"/>
+  <text x="426" y="458" class="small">HTTP / JSON</text>
+
+  <path class="arrow" d="M890 474H990"/>
+  <text x="906" y="458" class="small">validated writes</text>
+
+  <path class="double dashed" d="M1150 680V752H235V700"/>
+  <text x="510" y="782" class="small">Admin UI refreshes from saved data through backend APIs</text>
+
+  <rect x="72" y="734" width="1238" height="88" rx="20" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="104" y="772" class="label">Boundary note</text>
+  <text x="104" y="802" class="body">The admin panel never writes files directly. All updates pass through the backend service layer first.</text>
+</svg>
